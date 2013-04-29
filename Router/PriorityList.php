@@ -14,7 +14,8 @@ use Iterator;
 
 /**
  * Priority list
- */
+ *
+  */
 class PriorityList implements Iterator, Countable
 {
     /**
