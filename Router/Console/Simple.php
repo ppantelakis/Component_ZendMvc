@@ -22,13 +22,13 @@
 namespace Zend\Mvc\Router\Console;
 
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\RequestInterface as Request;
-use Zend\Mvc\Router\Exception;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Filter\FilterChain;
-use Zend\Validator\ValidatorChain;
 use Zend\Mvc\Exception\InvalidArgumentException;
+use Zend\Mvc\Router\Exception;
+use Zend\Stdlib\ArrayUtils;
+use Zend\Stdlib\RequestInterface as Request;
+use Zend\Validator\ValidatorChain;
 
 /**
  * Segment route.
@@ -462,7 +462,7 @@ class Simple implements RouteInterface
              */
             elseif (preg_match('/\G\[(?P<name>[a-z0-9][a-zA-Z0-9\_\-]*?)\](?: +|$)/s', $def, $m, 0, $pos)) {
                 $item = array(
-                    'name'       => strtolower( $m['name'] ),
+                    'name'       => strtolower($m['name']),
                     'literal'    => false,
                     'required'   => false,
                     'positional' => true,
@@ -475,7 +475,7 @@ class Simple implements RouteInterface
              */
             elseif (preg_match('/\G\[ *\<(?P<name>[a-z0-9][a-zA-Z0-9\_\-]*?)\> *\](?: +|$)/s', $def, $m, 0, $pos)) {
                 $item = array(
-                    'name'       => strtolower( $m['name'] ),
+                    'name'       => strtolower($m['name']),
                     'literal'    => false,
                     'required'   => false,
                     'positional' => true,
@@ -501,7 +501,7 @@ class Simple implements RouteInterface
              */
             elseif (preg_match('/\G(?P<name>[A-Z][a-zA-Z0-9\_\-]*?)(?: +|$)/s', $def, $m, 0, $pos)) {
                 $item = array(
-                    'name'       => strtolower( $m['name'] ),
+                    'name'       => strtolower($m['name']),
                     'literal'    => false,
                     'required'   => true,
                     'positional' => true,
@@ -522,7 +522,7 @@ class Simple implements RouteInterface
                 );
             } else {
                 throw new Exception\InvalidArgumentException(
-                    'Cannot understand Console route at "' . substr( $def, $pos ) . '"'
+                    'Cannot understand Console route at "' . substr($def, $pos) . '"'
                 );
             }
 
