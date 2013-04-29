@@ -39,13 +39,6 @@ abstract class AbstractRestfulController extends AbstractController
     );
 
     /**
-     * Name of request or query parameter containing identifier
-     *
-     * @var string
-     */
-    protected $identifierName = 'id';
-
-    /**
      * @var int From Zend\Json\Json
      */
     protected $jsonDecodeType = Json::TYPE_ARRAY;
@@ -56,28 +49,6 @@ abstract class AbstractRestfulController extends AbstractController
      * @var array
      */
     protected $customHttpMethodsMap = array();
-
-    /**
-     * Set the route match/query parameter name containing the identifier
-     *
-     * @param  string $name
-     * @return self
-     */
-    public function setIdentifierName($name)
-    {
-        $this->identifierName = (string) $name;
-        return $this;
-    }
-
-    /**
-     * Retrieve the route match/query parameter name containing the identifier
-     *
-     * @return string
-     */
-    public function getIdentifierName()
-    {
-        return $this->identifierName;
-    }
 
     /**
      * Create a new resource
@@ -390,7 +361,7 @@ abstract class AbstractRestfulController extends AbstractController
      *
      * @param  Request $request
      * @param  string|null $contentType
-     * @return bool
+     * @return boolean
      */
     public function requestHasContentType(Request $request, $contentType = '')
     {
@@ -460,7 +431,7 @@ abstract class AbstractRestfulController extends AbstractController
      * Retrieve the identifier, if any
      *
      * Attempts to see if an identifier was passed in either the URI or the
-     * query string, returning it if found. Otherwise, returns a boolean false.
+     * query string, returning if if found. Otherwise, returns a boolean false.
      *
      * @param  \Zend\Mvc\Router\RouteMatch $routeMatch
      * @param  Request $request
@@ -468,13 +439,12 @@ abstract class AbstractRestfulController extends AbstractController
      */
     protected function getIdentifier($routeMatch, $request)
     {
-        $identifier = $this->getIdentifierName();
-        $id = $routeMatch->getParam($identifier, false);
+        $id = $routeMatch->getParam('id', false);
         if ($id) {
             return $id;
         }
 
-        $id = $request->getQuery()->get($identifier, false);
+        $id = $request->getQuery()->get('id', false);
         if ($id) {
             return $id;
         }

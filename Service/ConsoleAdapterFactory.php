@@ -29,7 +29,7 @@ class ConsoleAdapterFactory implements FactoryInterface
      *         'charset' => 'MyConsoleCharset',     // always use this console charset
      *      ),
      *      'service_manager' => array(
-     *          'invokables' => array(
+     *          'invocables' => array(
      *              'MyConsoleAdapter' => 'Zend\Console\Adapter\Windows',
      *              'MyConsoleCharset' => 'Zend\Console\Charset\DESCG',
      *          )
