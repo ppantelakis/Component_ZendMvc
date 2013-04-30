@@ -9,8 +9,8 @@
 
 namespace Zend\Mvc\ResponseSender;
 
-use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
+use Zend\Http\PhpEnvironment\Response;
 
 class PhpEnvironmentResponseSender extends HttpResponseSender
 {

@@ -9,10 +9,10 @@
 
 namespace Zend\Mvc\Service;
 
+use Zend\Mvc\Exception\RuntimeException;
+use Zend\Mvc\Exception\InvalidArgumentException;
 use Zend\ModuleManager\Listener\ServiceListener;
 use Zend\ModuleManager\Listener\ServiceListenerInterface;
-use Zend\Mvc\Exception\InvalidArgumentException;
-use Zend\Mvc\Exception\RuntimeException;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -53,14 +53,11 @@ class ServiceListenerFactory implements FactoryInterface
             'FilterManager'                  => 'Zend\Mvc\Service\FilterManagerFactory',
             'FormElementManager'             => 'Zend\Mvc\Service\FormElementManagerFactory',
             'HttpRouter'                     => 'Zend\Mvc\Service\RouterFactory',
-            'HydratorManager'                => 'Zend\Mvc\Service\HydratorManagerFactory',
-            'InputFilterManager'             => 'Zend\Mvc\Service\InputFilterManagerFactory',
             'PaginatorPluginManager'         => 'Zend\Mvc\Service\PaginatorPluginManagerFactory',
             'Request'                        => 'Zend\Mvc\Service\RequestFactory',
             'Response'                       => 'Zend\Mvc\Service\ResponseFactory',
             'Router'                         => 'Zend\Mvc\Service\RouterFactory',
             'RoutePluginManager'             => 'Zend\Mvc\Service\RoutePluginManagerFactory',
-            'SerializerAdapterManager'       => 'Zend\Mvc\Service\SerializerAdapterPluginManagerFactory',
             'ValidatorManager'               => 'Zend\Mvc\Service\ValidatorManagerFactory',
             'ViewHelperManager'              => 'Zend\Mvc\Service\ViewHelperManagerFactory',
             'ViewFeedRenderer'               => 'Zend\Mvc\Service\ViewFeedRendererFactory',
