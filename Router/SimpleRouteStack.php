@@ -148,7 +148,7 @@ class SimpleRouteStack implements RouteStackInterface
      * @see    RouteStackInterface::addRoute()
      * @param  string  $name
      * @param  mixed   $route
-     * @param  int $priority
+     * @param  integer $priority
      * @return SimpleRouteStack
      */
     public function addRoute($name, $route, $priority = null)
@@ -170,7 +170,7 @@ class SimpleRouteStack implements RouteStackInterface
      * removeRoute(): defined by RouteStackInterface interface.
      *
      * @see    RouteStackInterface::removeRoute()
-     * @param  string $name
+     * @param  string  $name
      * @return SimpleRouteStack
      */
     public function removeRoute($name)
