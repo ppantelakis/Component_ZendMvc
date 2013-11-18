@@ -12,7 +12,6 @@ namespace Zend\Mvc\View\Console;
 use Zend\Console\Response as ConsoleResponse;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\View\Model\ConsoleModel as ConsoleViewModel;
@@ -66,10 +65,18 @@ class DefaultRenderingStrategy extends AbstractListenerAggregate
             $responseText .= $result->getVariable(ConsoleViewModel::RESULT);
         }
 
+        // Fetch service manager
+        $sm = $e->getApplication()->getServiceManager();
+
+        // Fetch console
+        $console = $sm->get('console');
+
         // Append console response to response object
-        $response->setContent(
-            $response->getContent() . $responseText
-        );
+        $content = $response->getContent() . $responseText;
+        if (is_callable(array($console, 'encodeText'))) {
+            $content = $console->encodeText($content);
+        }
+        $response->setContent($content);
 
         // Pass on console-specific options
         if ($response instanceof ConsoleResponse
