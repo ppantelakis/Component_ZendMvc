@@ -74,6 +74,7 @@ class ServiceListenerFactory implements FactoryInterface
             'ViewResolver'                   => 'Zend\Mvc\Service\ViewResolverFactory',
             'ViewTemplateMapResolver'        => 'Zend\Mvc\Service\ViewTemplateMapResolverFactory',
             'ViewTemplatePathStack'          => 'Zend\Mvc\Service\ViewTemplatePathStackFactory',
+            'Zend\I18n\Translator\TranslatorInterface' => 'Zend\I18n\Translator\TranslatorServiceFactory',
         ),
         'aliases' => array(
             'Configuration'                          => 'Config',
@@ -85,6 +86,7 @@ class ServiceListenerFactory implements FactoryInterface
             'Zend\View\Resolver\TemplatePathStack'   => 'ViewTemplatePathStack',
             'Zend\View\Resolver\AggregateResolver'   => 'ViewResolver',
             'Zend\View\Resolver\ResolverInterface'   => 'ViewResolver',
+            'ControllerManager'                      => 'ControllerLoader'
         ),
         'abstract_factories' => array(
             'Zend\Form\FormAbstractServiceFactory',
