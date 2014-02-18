@@ -9,37 +9,22 @@
 
 namespace Zend\Mvc\Service;
 
-use Zend\I18n\Translator\Translator;
-use Zend\Mvc\I18n\DummyTranslator;
-use Zend\Mvc\I18n\Translator as MvcTranslator;
-use Zend\ServiceManager\FactoryInterface;
+use Zend\I18n\Translator\TranslatorServiceFactory as I18nTranslatorServiceFactory;
+use Zend\Mvc\I18n\Translator;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Overrides the translator factory from the i18n component in order to
  * replace it with the bridge class from this namespace.
  */
-class TranslatorServiceFactory implements FactoryInterface
+class TranslatorServiceFactory extends I18nTranslatorServiceFactory
 {
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return MvcTranslator
-     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        if ($serviceLocator->has('Zend\I18n\Translator\TranslatorInterface')) {
-            return new MvcTranslator($serviceLocator->get('Zend\I18n\Translator\TranslatorInterface'));
-        }
-
-        if ($serviceLocator->has('Config')) {
-            $config = $serviceLocator->get('Config');
-            if (isset($config['translator']) && !empty($config['translator'])) {
-                $i18nTranslator = Translator::factory($config['translator']);
-                $serviceLocator->setService('Zend\I18n\Translator\TranslatorInterface', $i18nTranslator);
-                return new MvcTranslator($i18nTranslator);
-            }
-        }
-
-        return new MvcTranslator(new DummyTranslator());
+        // Configure the translator
+        $config     = $serviceLocator->get('Config');
+        $trConfig   = isset($config['translator']) ? $config['translator'] : array();
+        $translator = Translator::factory($trConfig);
+        return $translator;
     }
 }
